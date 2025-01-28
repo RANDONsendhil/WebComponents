@@ -5,105 +5,175 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 	</head>
+	<script type="module" src="./components.js"></script>
+	<script type="module" src="./counterComponent.js"></script>
+	<script type="module" src="./inputComponent.js"></script>
+	<script type="module" src="./zoomTextComponent.js"></script>
+	<script type="module" src="./toggleBtnComponent.js"></script>
+	<script type="module" src="./label.js"></script>
+	<script type="module" src="./content.js"></script>
 
 	<body>
-		<script type="module" src="./components.js"></script>
-		<script type="module" src="./toggleBtnComponent.js"></script>
-		<script type="module" src="./counterComponent.js"></script>
-		<script type="module" src="./inputComponent.js"></script>
-		<script type="module" src="./zoomTextComponent.js"></script>
-		<script type="module" src="./inputComponent.js"></script>
-		<script type="module" src="./label.js"></script>
-
 		<style>
-			.flex-container {
+			body {
+				background-image: url("backdrop.png");
+				font-family: "Gill Sans", sans-serif;
+			}
+			header {
+				background-color: #10347b;
+				padding: 10px 0;
+				text-align: center;
+			}
+			header h1 {
+				color: #e6b25f;
+			}
+			/* Styles de la navigation */
+			nav {
+				text-align: center;
+			}
+			nav ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
 				display: flex;
-				background-color: #cec2ed;
+				justify-content: center;
 				align-items: center;
-				justify-content: space-around;
 				align-content: space-between;
 				flex-wrap: wrap;
 			}
-			.flex-container > div {
-				background-color: #dfa4a4;
-				margin: 10px;
-				padding: 20px;
+
+			nav ul li {
+				margin: 0 15px;
 			}
 
-			.accTextZoomProps {
+			nav ul li a {
+				color: white;
+				text-decoration: none;
+				padding: 10px 15px;
+				display: block;
+			}
+
+			nav ul li a:hover {
+				background-color: #4687dc;
+			}
+			.container {
 				background-color: #f1f1f1;
 				border-width: 10px;
-				border: solid;
+				margin: 20px;
 				border-color: black !important;
+				margin: 30px;
+				padding: 7px;
+				border-radius: 3px;
+			}
+			.item-container {
+				background-color: #cfd7ff;
+				padding: 5px;
+				border-radius: 5px;
 			}
 		</style>
 
-		<!DOCTYPE html>
-		<html lang="en">
-			<head>
-				<meta charset="UTF-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				<title>Custom Attribute Example</title>
-			</head>
-			<body>
-				<div id="myElement">Hello, world!</div>
-			</body>
-		</html>
+		<!-- Header -->
+		<header>
+			<h1>Accessible Web Components Demo</h1>
+			<nav>
+				<ul>
+					<li><a href="#home">Accueil</a></li>
+					<li><a href="#acc-input">Acc-Input</a></li>
+					<li><a href="#acc-button">Acc-Button</a></li>
+					<li><a href="#acc-toggle">Acc-Toggle</a></li>
+					<li><a href="#acc-zoom">Acc-Zoom</a></li>
+				</ul>
+			</nav>
+		</header>
 
-		<h5>SLOT MESSAGE AVAILABLE</h5>
-		<acc-slot accElement=": Id of this page">
-			<p slot="accSlot">THIS IS THE SLOT</p>
-		</acc-slot>
+		<!-- Footer -->
 
-		<h5>SLOT MESSAGE NO PRESENT TRIGGER DEFAULT</h5>
-		<acc-slot accElement=": Id of this page">
-			<p slot="accSlot.">TEST</p>
-		</acc-slot>
+		<main>
+			<section id="Home">
+				<div class="container">
+					<h5>SLOT MESSAGE AVAILABLE</h5>
+					<acc-slot accElement=": Id of this page">
+						<p slot="accSlot">THIS IS THE SLOT</p>
+					</acc-slot>
 
-		<acc-label value="I ame here"></acc-label>
+					<h5>SLOT MESSAGE NO PRESENT TRIGGER DEFAULT</h5>
+					<acc-slot accElement=": Id of this page">
+						<p slot="accSlot.">TEST</p>
+					</acc-slot>
+				</div>
+			</section>
 
-		<acc-input for="lname" inputId="lname" type="text" labelText="Nom"></acc-input>
-
-		<!-- <acc-input for="fname" id="fname" type="text">
-			<span slot="Prénom"></span>
-		</acc-input> -->
-
-		<div class="accTextZoomProps">
-			<h2>ACCESSIBLE ZOOM COMPONENTS</h2>
-			<div class="flex-container">
-				<zoom-value value="0" step="2"></zoom-value>
-				<acc-toggle-btn active="false" action="toggleAction(this)"></acc-toggle-btn>
-			</div>
-			<acc-zoom-text active="false" value="0">
-				<div class="flex-container">
-					<div>
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-						penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-						quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
-						rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt
-					</div>
-					<div>
-						Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-						ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.
-						Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
-						rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero. Cras dapibus
-					</div>
-					<div>
-						Sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio
-						et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros
-						faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget
-						bibendum sodales, augue velit cursus nunc
-					</div>
-					<div>
-						Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-						ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.
-						Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
-						rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero. Cras dapibus
+			<section id="acc-input">
+				<div class="container">
+					<div class="item-container">
+						<h3>ACCESSIBLE INPUT COMPONENTS</h3>
+						<acc-input for="lname" inputId="lname" type="text" labelText="Nom"></acc-input>
+						<acc-input for="lnam e" inputId="lname" type="text" labelText="Prénom"></acc-input>
+						<acc-input for="lname" inputId="lname" type="text" labelText="Adresse"></acc-input>
 					</div>
 				</div>
-			</acc-zoom-text>
-		</div>
-		<br />
-		<br />
+			</section>
+
+			<section id="acc-button">
+				<div class="container">
+					<div class="item-container">
+						<h3>ACCESSIBLE BUTTONS COMPONENTS</h3>
+						<div class="item-container">
+							<zoom-value name="valeur zoom" value="0" step="2"></zoom-value>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="acc-toggle">
+				<div class="container">
+					<div class="item-container">
+						<h3>ACCESSIBLE TOGGLE BUTTON COMPONENTS</h3>
+						<acc-toggle-btn name="Button zoom" active="false" action="toggleAction(this)"></acc-toggle-btn>
+					</div>
+				</div>
+			</section>
+
+			<section id="acc-zoom">
+				<div class="container">
+					<div class="item-container">
+						<h3>ACCESSIBLE ZOOM TEXT COMPONENTS</h3>
+						<acc-zoom-text active="false" value="0">
+							<acc-content title="Title 1">
+								<p slot="content">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
+									sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+									pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+									vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+									mollis pretium. Integer tincidunt
+								</p>
+							</acc-content>
+							<acc-content title="Title 2">
+								<p slot="content">
+									Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae,
+									eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut
+									metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper
+									ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper
+									libero. Cras dapibus tincidunt
+								</p>
+							</acc-content>
+							<acc-content title="Title 3">
+								<p slot="content">
+									Sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+									Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante.
+									Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales
+									sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc venenatis vitae, justo. Nullam
+									dictum felis eu pede mollis pretium. Integer tincidunt
+								</p>
+							</acc-content>
+						</acc-zoom-text>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer>
+			<p>&copy; FOOTER</p>
+		</footer>
+		<script src="./main.js"></script>
 	</body>
 </html>

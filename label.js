@@ -1,6 +1,6 @@
 const template = document.createElement("template");
 template.innerHTML = `
-<label id="id_label"></label>
+<label tabindex="0" id="id_label"></label>
 `;
 
 class AccDiv extends HTMLElement {
@@ -24,7 +24,6 @@ class AccDiv extends HTMLElement {
 		this.$wrapper = this.shadowRoot.querySelector("label");
 	}
 	connectedCallback() {
-		console.log(this.$wrapper);
 		this.$wrapper.setAttribute("aria-label", this.value);
 		this.render();
 	}

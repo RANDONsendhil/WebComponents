@@ -1,12 +1,12 @@
 const template = document.createElement("template");
 template.innerHTML = `
 <div class="flex-container">
-  
+   <span>Accessiblity Zoom Button</span>
   <div id="divSwitch" name="Button-zoom">
   <label class="switch">
   <input type="checkbox" id="checkboxtoggle" >
   <span class="slider round">
-  <span>Accessiblity Zoom Button</span>
+ 
 </label>
 </div>
 <div style="position: relative;top: 0px;"><span>Is Toggled:</span><span id=isToggled></span></div>
@@ -29,12 +29,11 @@ template.innerHTML = `
 
 .flex-container{
     display: flex;
-    background-color: #F1F1EF;
     align-content: flex-end;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    background-color: #cab8d7;
+	border-radius:5px;
   }
 
 .flex-container>div {
@@ -98,7 +97,7 @@ class AccToggleBtn extends HTMLElement {
 	$accName;
 
 	static get observedAttributes() {
-		return ["active"];
+		return ["active", "name"];
 	}
 
 	get active() {
@@ -107,6 +106,14 @@ class AccToggleBtn extends HTMLElement {
 
 	set active(val) {
 		this.setAttribute("active", val);
+	}
+
+	get name() {
+		return this.getAttribute("name");
+	}
+
+	set name(val) {
+		this.setAttribute("name", val);
 	}
 
 	constructor() {
@@ -134,8 +141,10 @@ class AccToggleBtn extends HTMLElement {
 	}
 
 	attributeChangedCallback(name, oldValue, newValue) {
-		console.log("===== AccToggleBtn === AccToggleBtn => " + newValue);
 		this.$isToggled.innerHTML = newValue;
+		if (name === "active") {
+			this.$checkboxtoggle.setAttribute("aria-label", this.name + " " + this.active);
+		}
 	}
 
 	_checkboxtoggle(event) {

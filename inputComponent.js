@@ -13,57 +13,43 @@ template.innerHTML = `
 .container{
   max-width: auto;
   background: #fff;
-  width: 800px;
+  width: 500px;
  
 }
-.container .text{
-  text-align: center;
-  font-size: 41px;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
- 
 .container form .form-row{
   display: flex;
-  margin: 32px 0;
+  margin: 32px 0px;
+  text-
 }
 form .form-row .input-data{
   width: 100%;
   height: 40px;
-  margin: 0 20px;
   position: relative;
 }
-form .form-row .textarea{
-  height: 70px;
-}
+ 
 .input-data input,
 .textarea textarea{
   display: block;
   width: 100%;
   height: 100%;
   border: none;
-  font-size: 17px;
   border-bottom: 2px solid rgba(0,0,0, 0.12);
 }
 .input-data input:focus ~ label, .textarea textarea:focus ~ label,
 .input-data input:valid ~ label, .textarea textarea:valid ~ label{
   transform: translateY(-20px);
-  font-size: 14px;
-  color: #3498db;
+  font-size: 20px;
+  color:rgb(6, 33, 51);
+ 
 }
-.textarea textarea{
-  resize: none;
-  margin:9px:2px;
-}
+ 
 .input-data label{
   position: absolute;
   pointer-events: none;
   bottom: 17px;
   font-size: 16px;
   transition: all 0.3s ease;
+  left:5px;
 }
  
 .input-data .underline{
@@ -88,14 +74,10 @@ form .form-row .textarea{
 .textarea textarea:valid ~ .underline:before{
   transform: scale(1);
 }
-.submit-btn .input-data{
-  overflow: hidden;
-  height: 45px!important;
-  width: 25%!important;
-}
+ 
 .submit-btn .input-data .inner{
   height: 100%;
-  width: 300%;
+  width: 200%;
   position: absolute;
   left: -100%;
   background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
@@ -133,16 +115,16 @@ form .form-row .textarea{
   .submit-btn .input-data{
     width: 40%!important;
   }
- 
 }
+
 </style>
 <div class="container">
     <form>
     <div class="form-row">
       <div class="input-data" >
-        <input type="text" required>
+        <input tabindex=2 type="text" required id="inputValue">
         <div class="underline"></div>
-       <label><acc-label id="input-label"> </acc-label></label>
+       <label><acc-label  tabIndex=1 id="forLabelValue" > </acc-label></label>
       </div>
     </div>
   </form>
@@ -152,6 +134,7 @@ form .form-row .textarea{
 class AccInput extends HTMLElement {
 	$label;
 	$lname;
+	$forLabelValue;
 
 	static get observedAttributes() {
 		return ["lname"];
@@ -170,17 +153,16 @@ class AccInput extends HTMLElement {
 		this.attachShadow({ mode: "open", delegatesFocus: true });
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 		this.$lname = this.shadowRoot.querySelector(".input-data");
-		this.$label = this.shadowRoot.querySelector("#input-label");
+		this.$inputValue = this.shadowRoot.querySelector("#inputValue");
+		this.$forLabelValue = this.shadowRoot.querySelector("#forLabelValue");
 	}
 
 	connectedCallback() {
-		console.log("CONNECTED CALL BACK FOR INPUT c====>" + this.labelText);
-		this.$lname.setAttribute("aria-label", "First Name");
-		this.$label.setAttribute("value", this.labelText);
+		this.$lname.setAttribute("aria-label", this.labelText);
+		this.$forLabelValue.setAttribute("value", this.labelText);
+		this.$inputValue.setAttribute("aria-label", this.labelText);
 	}
 
-	attributeChangedCallback(name, oldValue, newValue) {
-		console.log(`Attribute ${name} has changed.`);
-	}
+	attributeChangedCallback(name, oldValue, newValue) {}
 }
 customElements.define("acc-input", AccInput);
